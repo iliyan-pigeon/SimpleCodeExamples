@@ -14,14 +14,21 @@ def find_face_location(image_path):
         return None
 
 
-def compare_faces(first_image, second_image):
+def compare_faces(first_image, first_face_location, second_image, second_face_location):
     tolerance = 0.6
 
-    first_image_encoding = face_recognition.face_encodings(first_image)[0]
-    second_image_encoding = face_recognition.face_encodings(second_image)[0]
+    image_one = face_recognition.load_image_file(f"{first_image}")
+    image_two = face_recognition.load_image_file(f"{second_image}")
+
+    first_image_encoding = face_recognition.face_encodings(image_one, first_face_location)[0]
+    second_image_encoding = face_recognition.face_encodings(image_two, second_face_location)[0]
 
     result = face_recognition.compare_faces([first_image_encoding], second_image_encoding, tolerance)[0]
     face_distance = face_recognition.face_distance([first_image_encoding], second_image_encoding)[0]
-    similarity_percentage = (1.0 - face_distance) * 100
 
-    return result, face_distance, similarity_percentage
+    return result, face_distance
+
+
+
+
+
