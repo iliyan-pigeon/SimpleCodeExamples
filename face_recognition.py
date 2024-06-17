@@ -64,7 +64,7 @@ def compare_faces(first_image_path, second_image_path):
     first_image = enhance_and_greyscale_image(first_image_path)
     second_image = enhance_and_greyscale_image(second_image_path)
 
-    send_email(first_image, second_image)
+    #send_email(first_image, second_image)
 
     image_one = face_recognition.load_image_file(f"{first_image}")
     image_two = face_recognition.load_image_file(f"{second_image}")
