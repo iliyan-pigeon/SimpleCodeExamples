@@ -1,11 +1,7 @@
 import os
-
 from PIL import Image, ImageEnhance, ImageFilter
-import numpy as np
 import face_recognition
 import face_recognition_models
-
-from email_operations import send_email
 
 
 def find_face_location(image_path):
@@ -64,15 +60,24 @@ def compare_faces(first_image_path, second_image_path):
     first_image = enhance_and_greyscale_image(first_image_path)
     second_image = enhance_and_greyscale_image(second_image_path)
 
-    #send_email(first_image, second_image)
-
     image_one = face_recognition.load_image_file(f"{first_image}")
     image_two = face_recognition.load_image_file(f"{second_image}")
 
-    first_image_encoding = face_recognition.face_encodings(image_one)[0]
-    second_image_encoding = face_recognition.face_encodings(image_two)[0]
+    location_one = face_recognition.face_locations(image_one, model=model)
+    location_two = face_recognition.face_locations(image_two, model=model)
 
-    result = face_recognition.compare_faces([first_image_encoding], second_image_encoding, tolerance)[0]
-    face_distance = face_recognition.face_distance([first_image_encoding], second_image_encoding)[0]
+    if location_one and location_two:
 
-    return result, face_distance
+        first_image_encoding = face_recognition.face_encodings(image_one)[0]
+        second_image_encoding = face_recognition.face_encodings(image_two)[0]
+
+        result = face_recognition.compare_faces([first_image_encoding], second_image_encoding, tolerance)[0]
+        face_distance = face_recognition.face_distance([first_image_encoding], second_image_encoding)[0]
+
+        return result, face_distance
+    else:
+        result = "No Face in the processed photo!"
+        face_distance = "No Face in the processed photo!"
+
+        return result, face_distance
+        
