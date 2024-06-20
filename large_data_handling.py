@@ -69,4 +69,3 @@ def from_db_to_csv(conn, process_name):
     cursor.close()
 
     return csv_file_name
-
