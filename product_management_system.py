@@ -1,8 +1,9 @@
-class BaseProduct:
-    def __init__(self, product: str, price: float, amount=1):
+class BaseDrink:
+    def __init__(self, product: str, price: float, amount=1, comment=None):
         self.product_name = product
         self.price = price
         self.amount = amount
+        self.comment = comment
 
     def total_price(self):
         result = self.price * self.amount
@@ -10,15 +11,40 @@ class BaseProduct:
         return result
 
 
-class Water250ml(BaseProduct):
+class Water250ml(BaseDrink):
     pass
 
 
-class Coffee(BaseProduct):
+class Coffee(BaseDrink):
     pass
 
 
-class Lemonade(BaseProduct):
+class Lemonade(BaseDrink):
+    pass
+
+
+class BaseFood:
+    def __init__(self, product, price, amount=1, comment=None):
+        self.product_name = product
+        self.price = price
+        self.amount = amount
+        self.comment = comment
+
+    def total_price(self):
+        result = self.price * self.amount
+
+        return result
+
+
+class Pasta(BaseFood):
+    pass
+
+
+class Burger(BaseFood):
+    pass
+
+
+class Pizza(BaseFood):
     pass
 
 
@@ -48,8 +74,12 @@ class OpenBill:
 
 water = Water250ml("Devin", 2.00, 2)
 coffee = Coffee("Dabov", 3.00, 4)
+lemonade = Lemonade("Lemonade", 5.00, 1)
+pasta = Pasta("Carbonara", 15.00, 2)
+pizza = Pizza("Margherita", 12.00, 1)
+burger = Burger("Burger", 17.00, 3)
 
-bill = OpenBill(water, coffee)
+bill = OpenBill(water, coffee, lemonade, pasta, pizza, burger)
 
 print(bill.list_the_products())
 print("Total:")
