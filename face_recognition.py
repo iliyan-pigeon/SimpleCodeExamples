@@ -24,7 +24,7 @@ def enhance_and_greyscale_image(image_path, contrast=2.0, sharpness=2.0):
     image = pil_image.crop((left, top, right, bottom))
 
     width, height = image.size
-    max_width = 300
+    max_width = 200
     ratio = max_width / width
     new_width = max_width
     new_height = int(height * ratio)
