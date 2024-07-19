@@ -68,7 +68,7 @@ window.fill(black)
 # Draw the paddles and ball
 pygame.draw.rect(window, white, (*left_paddle_pos, paddle_width, paddle_height))
 pygame.draw.rect(window, white, (*right_paddle_pos, paddle_width, paddle_height))
-pygame.draw.circle(window, white, ball_pos, ball_radius)
+pygame.draw.circle(window, blue, ball_pos, ball_radius)
 
 # Update the display
 pygame.display.flip()
