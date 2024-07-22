@@ -12,7 +12,7 @@ pygame.display.set_caption("Pong Game")
 black = (0, 0, 0)
 white = (255, 255, 255)
 blue = (0, 0, 255)
-red = ""
+red = (255, 0, 0)
 
 # Paddle dimensions
 paddle_width, paddle_height = 10, 100
